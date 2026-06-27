@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-01-SettingUpJUnit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-01-SettingUpJUnit/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-02-BasicJUnitTest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-02-BasicJUnitTest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-03-Assertions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-03-Assertions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-04-AAA-Pattern/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-04-AAA-Pattern/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-01-Mocking-and-Stubbing/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-01-Mocking-and-Stubbing/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-02-Verifying-Interactions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-02-Verifying-Interactions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-03-Argument-Matching/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-03-Argument-Matching/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

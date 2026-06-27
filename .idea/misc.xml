@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Exercise-1-Setting-up-JUnit/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Exercise-02-BasicJUnitTest/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Exercise-03-Assertions/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Exercise-04-AAA-Pattern/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-01-Mocking-and-Stubbing/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-02-Verifying-Interactions/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-03-Argument-Matching/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
