@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Week 1/SLF4J Logging exercises/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/SLF4J Logging exercises/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/SLF4J-Logging-exercises/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/SLF4J-Logging-exercises/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/exercise-01-logging-error-messages/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/exercise-01-logging-error-messages/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/slf4j-logging-exercise-01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Week 1/slf4j-logging-exercise-01/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-01-SettingUpJUnit/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-01-SettingUpJUnit/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/JUnit Exercises/Exercise-02-BasicJUnitTest/src/main/java" charset="UTF-8" />

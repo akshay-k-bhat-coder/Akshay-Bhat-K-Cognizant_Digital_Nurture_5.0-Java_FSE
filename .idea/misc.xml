@@ -11,7 +11,19 @@
         <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-01-Mocking-and-Stubbing/pom.xml" />
         <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-02-Verifying-Interactions/pom.xml" />
         <option value="$PROJECT_DIR$/Week 2/TDD using JUnit5 and Mockito/Mockito Exercises/Exercise-03-Argument-Matching/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/slf4j-logging-exercise-01/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/SLf4J-Logging-exercises/pom.xml" />
+        <option value="$PROJECT_DIR$/SLF4J Logging exercises/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/exercise-01-logging-error-messages/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/SLF4J-Logging-exercises/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Week 1/SLf4J-Logging-exercises/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/exercise-01-logging-error-messages/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 1/slf4j-logging-exercise-01/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
