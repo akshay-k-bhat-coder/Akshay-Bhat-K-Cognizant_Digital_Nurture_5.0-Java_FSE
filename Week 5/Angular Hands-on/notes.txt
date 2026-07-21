@@ -1,0 +1,81 @@
+===========================================
+Student Course Portal
+Hands-On 1 - Task 1
+Project Structure Notes
+===========================================
+
+1. angular.json
+---------------
+Purpose:
+This is the main Angular workspace configuration file. It contains project settings such as build configuration, serve options, assets, styles, scripts, and production settings.
+
+2. package.json
+---------------
+Purpose:
+This file contains project metadata, dependencies, development dependencies, and npm scripts. It is used by npm to install and manage project packages.
+
+3. tsconfig.json
+----------------
+Purpose:
+This is the main TypeScript configuration file. It defines compiler options and project-wide TypeScript settings.
+
+4. tsconfig.app.json
+--------------------
+Purpose:
+This file extends tsconfig.json and contains TypeScript compiler settings specifically for the Angular application.
+
+5. src/main.ts
+--------------
+Purpose:
+This is the entry point of the Angular application. It bootstraps the application by loading the root component using app.config.ts.
+
+6. src/app/app.ts
+-----------------
+Purpose:
+This is the root component of the application. It defines the main component, its selector, template, styles, and application logic.
+
+7. src/app/app.config.ts
+------------------------
+Purpose:
+This file contains the application configuration. It registers providers such as routing, HTTP services, and other global configurations required by the application.
+
+8. src/index.html
+-----------------
+Purpose:
+This is the single HTML page of the Angular application. It contains the <app-root> element where the Angular application is rendered.
+
+===========================================
+ng build
+===========================================
+
+Command:
+ng build
+
+Purpose:
+Compiles the Angular application and generates an optimized production build inside the dist/ folder.
+
+Generated Folder:
+dist/
+
+The compiled JavaScript, HTML, CSS, and other production files are stored inside the dist/ folder.
+
+===========================================
+Budgets Configuration
+===========================================
+
+Location:
+angular.json
+build -> configurations -> production -> budgets
+
+maximumWarning:
+Displays a warning when the application's bundle size exceeds the specified limit.
+
+maximumError:
+Stops the build process if the application's bundle size exceeds the specified limit.
+
+Purpose:
+The budgets configuration helps developers monitor bundle size and prevent unnecessarily large production builds.
+
+===========================================
+End of Notes
+===========================================
