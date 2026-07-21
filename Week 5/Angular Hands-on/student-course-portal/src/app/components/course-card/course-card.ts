@@ -1,25 +1,34 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  OnDestroy,
+  SimpleChanges
+} from '@angular/core';
 
 @Component({
   selector: 'app-course-card',
-  standalone: false,
+  standalone: true,
+  imports: [],
   templateUrl: './course-card.html',
-  styleUrl: './course-card.css',
+  styleUrl: './course-card.css'
 })
-export class CourseCard {
+export class CourseCard implements OnChanges {
 
-  @Input() course!: {
-    id: number;
-    name: string;
-    code: string;
-    credits: number;
-  };
+  @Input()
+  course: any;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Course changed:', changes['course']);
+  }
 
   @Output()
-  enrollRequested = new EventEmitter<number>();
+  enrollCourse = new EventEmitter<any>();
 
-  enroll() {
-    this.enrollRequested.emit(this.course.id);
-  }
+  onEnroll() {
+  this.enrollCourse.emit(this.course);
+}
 
 }
