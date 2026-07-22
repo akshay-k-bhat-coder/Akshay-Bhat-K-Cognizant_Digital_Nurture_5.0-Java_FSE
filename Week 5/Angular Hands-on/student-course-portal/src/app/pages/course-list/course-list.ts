@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseCard } from '../../components/course-card/course-card';
+import { CourseService } from '../../services/course';
 
 @Component({
   selector: 'app-course-list',
@@ -11,40 +12,17 @@ import { CourseCard } from '../../components/course-card/course-card';
 })
 export class CourseList implements OnInit {
   isLoading = true;
-
-  courses = [
-    {
-      id: 1,
-      name: 'Angular Fundamentals',
-      code: 'CS101',
-      credits: 4,
-      gradeStatus: 'passed',
-      enrolled: false,
-    },
-    {
-      id: 2,
-      name: 'Spring Boot 3',
-      code: 'CS102',
-      credits: 3,
-      gradeStatus: 'pending',
-      enrolled: false,
-    },
-    {
-      id: 3,
-      name: 'Database Management',
-      code: 'CS103',
-      credits: 4,
-      gradeStatus: 'failed',
-      enrolled: false,
-    },
-  ];
+  courses: any[] = [];
 
   onEnroll(course: any) {
-    course.enrolled = true;
+    this.courseService.enrollCourse(course);
     alert(`You enrolled in ${course.name}`);
   }
 
+  constructor(private courseService: CourseService) {}
+
   ngOnInit(): void {
+    this.courses = this.courseService.getCourses();
     setTimeout(() => {
       this.isLoading = false;
     }, 1500);
