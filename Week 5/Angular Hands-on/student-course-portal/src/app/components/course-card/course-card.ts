@@ -1,22 +1,17 @@
+import { CommonModule } from '@angular/common';
+import { Highlight } from '../../directives/highlight';
 import { Output, EventEmitter } from '@angular/core';
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  OnDestroy,
-  SimpleChanges
-} from '@angular/core';
+import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
+import { Component, Input, OnChanges, OnInit, OnDestroy, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-course-card',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, Highlight, CreditLabelPipe],
   templateUrl: './course-card.html',
-  styleUrl: './course-card.css'
+  styleUrl: './course-card.css',
 })
 export class CourseCard implements OnChanges {
-
   @Input()
   course: any;
 
@@ -26,9 +21,20 @@ export class CourseCard implements OnChanges {
 
   @Output()
   enrollCourse = new EventEmitter<any>();
+  isExpanded = false;
 
   onEnroll() {
-  this.enrollCourse.emit(this.course);
-}
+    this.enrollCourse.emit(this.course);
+  }
 
+  toggleDetails() {
+    this.isExpanded = !this.isExpanded;
+  }
+  get cardClasses() {
+    return {
+      'card--enrolled': this.course.enrolled,
+      'card--full': this.course.credits >= 4,
+      expanded: this.isExpanded,
+    };
+  }
 }
