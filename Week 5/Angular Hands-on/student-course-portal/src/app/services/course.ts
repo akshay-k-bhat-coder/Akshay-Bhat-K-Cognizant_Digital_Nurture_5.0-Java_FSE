@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  private courses = [
+  private courses: Course[] = [
     {
       id: 1,
       code: 'ANG101',
@@ -35,7 +36,7 @@ export class CourseService {
     return this.courses;
   }
 
-  enrollCourse(course: any): void {
+  enrollCourse(course: Course): void {
     course.enrolled = true;
   }
 
@@ -43,7 +44,7 @@ export class CourseService {
     return this.courses.find((course) => course.id === id);
   }
 
-  addCourse(course: any): void {
+  addCourse(course: Course): void {
     this.courses.push(course);
   }
 
