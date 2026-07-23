@@ -23,8 +23,15 @@ export class CourseCard implements OnChanges {
   enrollCourse = new EventEmitter<any>();
   isExpanded = false;
 
+  @Output()
+  viewCourse = new EventEmitter<number>();
+
   onEnroll() {
     this.enrollCourse.emit(this.course);
+  }
+
+  viewDetails() {
+    this.viewCourse.emit(this.course.id);
   }
 
   toggleDetails() {

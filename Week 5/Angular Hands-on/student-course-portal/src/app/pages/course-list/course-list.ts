@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseCard } from '../../components/course-card/course-card';
 import { CourseService } from '../../services/course';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -19,7 +20,10 @@ export class CourseList implements OnInit {
     alert(`You enrolled in ${course.name}`);
   }
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.courses = this.courseService.getCourses();
@@ -32,5 +36,9 @@ export class CourseList implements OnInit {
     // trackBy improves performance by reusing DOM elements
     // instead of recreating them when the list changes.
     return course.id;
+  }
+
+  viewCourse(courseId: number) {
+    this.router.navigate(['/courses', courseId]);
   }
 }

@@ -1,0 +1,16 @@
+@if (course; as c) {
+  <h2>{{ c.name }}</h2>
+
+  <p><strong>Course Code:</strong> {{ c.code }}</p>
+
+  <p><strong>Credits:</strong> {{ c.credits }}</p>
+
+  <p><strong>Grade Status:</strong> {{ c.gradeStatus }}</p>
+
+  <p>
+    <strong>Enrollment:</strong>
+    {{ c.enrolled ? 'Enrolled' : 'Not Enrolled' }}
+  </p>
+} @else {
+  <h2>Course Not Found</h2>
+}
