@@ -26,16 +26,26 @@ export class CourseCard implements OnChanges {
   @Output()
   viewCourse = new EventEmitter<number>();
 
+  @Output()
+  deleteCourseEvent = new EventEmitter<number>();
+
   onEnroll() {
     this.enrollCourse.emit(this.course);
   }
 
   viewDetails() {
+    alert('CourseCard clicked');
+    console.log('Course ID:', this.course.id);
+
     this.viewCourse.emit(this.course.id);
   }
 
   toggleDetails() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  deleteCourse() {
+    this.deleteCourseEvent.emit(this.course.id);
   }
   get cardClasses() {
     return {

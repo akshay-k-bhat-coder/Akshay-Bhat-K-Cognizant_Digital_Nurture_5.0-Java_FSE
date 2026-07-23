@@ -5,6 +5,8 @@ import { EnrollmentForm } from './pages/enrollment-form/enrollment-form';
 import { ReactiveEnrollment } from './pages/reactive-enrollment/reactive-enrollment';
 import { CourseDetail } from './pages/course-detail/course-detail';
 import { StudentProfile } from './pages/student-profile/student-profile';
+import { AddCourse } from './pages/add-course/add-course';
+import { EditCourse } from './pages/edit-course/edit-course';
 
 export const routes: Routes = [
   {
@@ -30,5 +32,13 @@ export const routes: Routes = [
   {
     path: 'reactive-enroll',
     component: ReactiveEnrollment,
+  },
+  {
+    path: 'add-course',
+    component: AddCourse,
+  },
+  {
+    path: 'edit-course/:id',
+    component: EditCourse,
   },
 ];

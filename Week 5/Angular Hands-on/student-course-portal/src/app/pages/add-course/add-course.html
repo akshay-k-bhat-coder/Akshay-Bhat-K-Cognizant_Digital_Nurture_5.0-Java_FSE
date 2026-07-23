@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Add New Course</h2>
+
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <!-- Course Code -->
+    <div class="form-group">
+      <label>Course Code</label>
+
+      <input type="text" formControlName="code" placeholder="e.g. ANG201" />
+
+      @if (code?.invalid && code?.touched) {
+        <small>Course code is required.</small>
+      }
+    </div>
+
+    <!-- Course Name -->
+    <div class="form-group">
+      <label>Course Name</label>
+
+      <input type="text" formControlName="name" placeholder="Enter course name" />
+
+      @if (name?.invalid && name?.touched) {
+        @if (name?.errors?.['required']) {
+          <small>Course name is required.</small>
+        }
+
+        @if (name?.errors?.['minlength']) {
+          <small>Minimum 3 characters required.</small>
+        }
+      }
+    </div>
+
+    <!-- Credits -->
+    <div class="form-group">
+      <label>Credits</label>
+
+      <input type="number" formControlName="credits" />
+
+      @if (credits?.invalid && credits?.touched) {
+        <small>Credits must be at least 1.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="courseForm.invalid">Add Course</button>
+  </form>
+</div>
