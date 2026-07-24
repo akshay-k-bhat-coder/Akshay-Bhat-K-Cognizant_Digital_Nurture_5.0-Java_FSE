@@ -4,6 +4,11 @@ import { CourseCard } from '../../components/course-card/course-card';
 import { CourseService } from '../../services/course';
 import { Router } from '@angular/router';
 import { Course } from '../../models/course';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { loadCourses } from '../../store/course/course.actions';
+import { selectAllCourses, selectCoursesLoading } from '../../store/course/course.selectors';
 
 @Component({
   selector: 'app-course-list',
@@ -13,33 +18,21 @@ import { Course } from '../../models/course';
   styleUrl: './course-list.css',
 })
 export class CourseList implements OnInit {
-  isLoading = true;
-  courses: Course[] = [];
-
-  onEnroll(course: any) {
-    this.courseService.enrollCourse(course);
-    alert(`You enrolled in ${course.name}`);
-  }
+  courses$!: Observable<Course[]>;
+  loading$!: Observable<boolean>;
 
   constructor(
+    private store: Store,
     private courseService: CourseService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe({
-      next: (data) => {
-        this.courses = data;
+    this.courses$ = this.store.select(selectAllCourses);
 
-        this.isLoading = false;
-      },
+    this.loading$ = this.store.select(selectCoursesLoading);
 
-      error: (err) => {
-        console.error(err);
-
-        this.isLoading = false;
-      },
-    });
+    this.store.dispatch(loadCourses());
   }
 
   trackByCourseId(index: number, course: any): number {
@@ -65,7 +58,8 @@ export class CourseList implements OnInit {
       next: () => {
         alert('Course deleted successfully.');
 
-        this.courses = this.courses.filter((c) => c.id !== courseId);
+        // Reload courses until DELETE is migrated to NgRx
+        this.store.dispatch(loadCourses());
       },
 
       error: (err) => console.error(err),

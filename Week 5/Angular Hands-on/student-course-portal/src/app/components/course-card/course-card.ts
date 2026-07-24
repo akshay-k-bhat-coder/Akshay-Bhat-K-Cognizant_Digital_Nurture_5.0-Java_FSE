@@ -2,7 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Highlight } from '../../directives/highlight';
 import { Output, EventEmitter } from '@angular/core';
 import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
-import { Component, Input, OnChanges, OnInit, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, take } from 'rxjs';
+import { selectEnrolledIds } from '../../store/enrollment/enrollment.selectors';
+import { enrollInCourse, unenrollFromCourse } from '../../store/enrollment/enrollment.actions';
 
 @Component({
   selector: 'app-course-card',
@@ -14,6 +18,12 @@ import { Component, Input, OnChanges, OnInit, OnDestroy, SimpleChanges } from '@
 export class CourseCard implements OnChanges {
   @Input()
   course: any;
+
+  enrolledIds$: Observable<number[]>;
+
+  constructor(private store: Store) {
+    this.enrolledIds$ = this.store.select(selectEnrolledIds);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('Course changed:', changes['course']);
@@ -30,7 +40,18 @@ export class CourseCard implements OnChanges {
   deleteCourseEvent = new EventEmitter<number>();
 
   onEnroll() {
-    this.enrollCourse.emit(this.course);
+    this.toggleEnroll();
+  }
+
+  toggleEnroll() {
+    this.enrolledIds$.pipe(take(1)).subscribe((ids) => {
+      const courseId = this.course.id;
+      if (ids.some((id) => String(id) === String(courseId))) {
+        this.store.dispatch(unenrollFromCourse({ courseId }));
+      } else {
+        this.store.dispatch(enrollInCourse({ courseId }));
+      }
+    });
   }
 
   viewDetails() {
@@ -47,9 +68,9 @@ export class CourseCard implements OnChanges {
   deleteCourse() {
     this.deleteCourseEvent.emit(this.course.id);
   }
+
   get cardClasses() {
     return {
-      'card--enrolled': this.course.enrolled,
       'card--full': this.course.credits >= 4,
       expanded: this.isExpanded,
     };

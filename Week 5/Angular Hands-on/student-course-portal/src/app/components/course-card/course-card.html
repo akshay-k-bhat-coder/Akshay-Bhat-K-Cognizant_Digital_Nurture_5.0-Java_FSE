@@ -1,5 +1,6 @@
 <div
   appHighlight="lightblue"
+  [class.card--enrolled]="(enrolledIds$ | async)?.includes(course.id)"
   [ngClass]="cardClasses"
   [ngStyle]="{
     'border-left':
@@ -28,6 +29,9 @@
   <button (click)="deleteCourse()">Delete</button>
   <button (click)="toggleDetails()">
     {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+  </button>
+  <button (click)="onEnroll()">
+    {{ (enrolledIds$ | async)?.includes(course.id) ? 'Unenroll' : 'Enroll' }}
   </button>
   <div *ngIf="isExpanded">
     <p><strong>Course Code:</strong> {{ course.code }}</p>
