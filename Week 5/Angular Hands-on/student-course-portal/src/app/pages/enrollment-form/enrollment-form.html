@@ -1,63 +1,70 @@
-<div class="container">
-  <h2>Course Enrollment</h2>
+<div class="container" style="max-width: 600px;">
+  <div class="card">
+    <h2>Course Enrollment (Template Form)</h2>
+    <p style="margin-bottom: 24px;">Submit a standard course enrollment request using the template-driven form.</p>
 
-  <form #enrollForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Student Name</label>
+    <form #enrollForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Student Name</label>
 
-      <input
-        type="text"
-        name="name"
-        [(ngModel)]="student.name"
-        required
-        minlength="3"
-        #name="ngModel"
-      />
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="student.name"
+          required
+          minlength="3"
+          #name="ngModel"
+          placeholder="Enter your name"
+        />
 
-      @if (name.invalid && name.touched) {
-        @if (name.errors?.['required']) {
-          <small>Name is required</small>
+        @if (name.invalid && name.touched) {
+          @if (name.errors?.['required']) {
+            <small>Name is required</small>
+          }
+
+          @if (name.errors?.['minlength']) {
+            <small>Name must contain at least 3 characters</small>
+          }
         }
+      </div>
 
-        @if (name.errors?.['minlength']) {
-          <small>Name must contain at least 3 characters</small>
+      <div class="form-group">
+        <label>Email</label>
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="student.email"
+          required
+          email
+          #email="ngModel"
+          placeholder="Enter email address"
+        />
+
+        @if (email.invalid && email.touched) {
+          <small>Enter a valid email</small>
         }
-      }
-    </div>
+      </div>
 
-    <div class="form-group">
-      <label>Email</label>
+      <div class="form-group">
+        <label>Course</label>
 
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="student.email"
-        required
-        email
-        #email="ngModel"
-      />
+        <select name="course" [(ngModel)]="student.course" required #course="ngModel">
+          <option value="">Select Course</option>
+          <option>Angular</option>
+          <option>Spring Boot</option>
+          <option>React</option>
+          <option>Python</option>
+        </select>
 
-      @if (email.invalid && email.touched) {
-        <small>Enter a valid email</small>
-      }
-    </div>
+        @if (course.invalid && course.touched) {
+          <small>Select a course</small>
+        }
+      </div>
 
-    <div class="form-group">
-      <label>Course</label>
-
-      <select name="course" [(ngModel)]="student.course" required #course="ngModel">
-        <option value="">Select Course</option>
-        <option>Angular</option>
-        <option>Spring Boot</option>
-        <option>React</option>
-        <option>Python</option>
-      </select>
-
-      @if (course.invalid && course.touched) {
-        <small>Select a course</small>
-      }
-    </div>
-
-    <button type="submit" [disabled]="enrollForm.invalid">Enroll</button>
-  </form>
+      <button type="submit" [disabled]="enrollForm.invalid" style="width: 100%; margin-top: 10px;">
+        Enroll Now
+      </button>
+    </form>
+  </div>
 </div>

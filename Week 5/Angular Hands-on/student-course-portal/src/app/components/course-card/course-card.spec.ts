@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 import { SimpleChange } from '@angular/core';
@@ -12,7 +13,10 @@ describe('CourseCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CourseCard],
-      providers: [provideStore({})],
+      providers: [
+        provideStore({}),
+        provideRouter([])
+      ],
     })
     .compileComponents();
 

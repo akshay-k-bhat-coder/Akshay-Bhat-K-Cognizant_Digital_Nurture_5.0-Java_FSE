@@ -9,12 +9,20 @@
       "enrolled": false
     },
     {
-      "code": "eeww",
-      "name": "weee",
-      "credits": 2,
+      "code": "DSA401",
+      "name": "data structures",
+      "credits": 4,
       "gradeStatus": "Not Graded",
       "enrolled": false,
-      "id": "3xpMl_6ZB8U"
+      "id": "957n1Ix38xE"
+    },
+    {
+      "code": "CN601",
+      "name": "Computer Networks",
+      "credits": 4,
+      "gradeStatus": "Not Graded",
+      "enrolled": false,
+      "id": "tZYX8WAVOXo"
     }
   ],
   "students": [

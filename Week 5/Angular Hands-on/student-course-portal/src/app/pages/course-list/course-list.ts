@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseCard } from '../../components/course-card/course-card';
 import { CourseService } from '../../services/course';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Course } from '../../models/course';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { loadCourses } from '../../store/course/course.actions';
 import { selectAllCourses, selectCoursesLoading } from '../../store/course/course.selectors';
@@ -13,26 +14,53 @@ import { selectAllCourses, selectCoursesLoading } from '../../store/course/cours
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [CommonModule, CourseCard],
+  imports: [CommonModule, CourseCard, FormsModule],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css',
 })
 export class CourseList implements OnInit {
   courses$!: Observable<Course[]>;
+  filteredCourses$!: Observable<Course[]>;
   loading$!: Observable<boolean>;
+  searchTerm: string = '';
 
   constructor(
     private store: Store,
     private courseService: CourseService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.courses$ = this.store.select(selectAllCourses);
-
     this.loading$ = this.store.select(selectCoursesLoading);
-
     this.store.dispatch(loadCourses());
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.searchTerm = params.get('search') || '';
+      this.filterCourses();
+    });
+  }
+
+  filterCourses() {
+    this.filteredCourses$ = this.courses$.pipe(
+      map((courses) => {
+        if (!this.searchTerm) return courses;
+        const term = this.searchTerm.toLowerCase();
+        return courses.filter((c) =>
+          c.name.toLowerCase().includes(term) ||
+          c.code.toLowerCase().includes(term)
+        );
+      })
+    );
+  }
+
+  onSearchChange(term: string) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { search: term || null },
+      queryParamsHandling: 'merge',
+    });
   }
 
   trackByCourseId(index: number, course: any): number {
@@ -62,7 +90,7 @@ export class CourseList implements OnInit {
         this.store.dispatch(loadCourses());
       },
 
-      error: (err) => console.error(err),
+      error: (err: any) => console.error(err),
     });
   }
 }

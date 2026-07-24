@@ -1,39 +1,53 @@
-<h1>{{ portalName }}</h1>
-
-<p>
-  This portal allows students to browse courses, enroll in subjects,
-  view their profile, and manage academic information.
-</p>
-
-<button [disabled]="!isPortalActive" (click)="onEnrollClick()">
-  Enroll Now
-</button>
-
-<p>{{ message }}</p>
-
-<br>
-
-<label>Search Course:</label>
-<input
-  type="text"
-  placeholder="Enter course name..."
-  [(ngModel)]="searchTerm">
-
-<p>Searching for: {{ searchTerm }}</p>
-
-<div class="stats">
-  <div class="card">
-    <h3>Courses Available</h3>
-    <p>12</p>
+<div class="container">
+  <div class="card hero-card" style="margin-bottom: 40px; padding: 40px; text-align: center; background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), var(--panel-bg);">
+    <h1 style="font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #ffffff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      {{ portalName }}
+    </h1>
+    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 24px; color: var(--text-muted);">
+      Access your courses, track your graduation progress, register for upcoming classes, and view your academic achievements in one dynamic workspace.
+    </p>
+    <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+      <button [disabled]="!isPortalActive" (click)="onEnrollClick()" style="font-size: 1rem; padding: 12px 30px;">
+        Enroll Now
+      </button>
+      @if (message) {
+        <p style="color: var(--success); font-weight: 600; margin-top: 8px;">{{ message }}</p>
+      }
+    </div>
   </div>
 
-  <div class="card">
-    <h3>Enrolled</h3>
-    <p>3</p>
+  <div class="stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+    <div class="card" style="text-align: center;">
+      <h3 style="color: var(--text-muted); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">Courses Available</h3>
+      <p style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">12</p>
+    </div>
+
+    <div class="card" style="text-align: center;">
+      <h3 style="color: var(--text-muted); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">Enrolled</h3>
+      <p style="font-size: 2.5rem; font-weight: 700; color: var(--success);">3</p>
+    </div>
+
+    <div class="card" style="text-align: center;">
+      <h3 style="color: var(--text-muted); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">GPA</h3>
+      <p style="font-size: 2.5rem; font-weight: 700; color: var(--warning);">3.8</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>GPA</h3>
-    <p>3.8</p>
+  <div class="card search-card" style="padding: 30px;">
+    <h3 style="margin-bottom: 15px;">Looking for something specific?</h3>
+    <div class="form-group" style="margin-bottom: 0;">
+      <label>Quick Search</label>
+      <input
+        type="text"
+        placeholder="Enter course name, code, or keyword..."
+        [(ngModel)]="searchTerm"
+        style="max-width: 500px;"
+      />
+      @if (searchTerm) {
+        <p style="margin-top: 10px; color: var(--primary); font-weight: 500;">
+          Searching for: "{{ searchTerm }}"
+        </p>
+      }
+    </div>
   </div>
 </div>

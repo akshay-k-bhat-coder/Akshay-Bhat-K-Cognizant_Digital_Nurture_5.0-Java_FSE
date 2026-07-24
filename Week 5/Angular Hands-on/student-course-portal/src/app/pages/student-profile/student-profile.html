@@ -1,1 +1,37 @@
-<p>student-profile works!</p>
+<div class="container">
+  <div class="profile-header card">
+    <div class="profile-avatar">
+      {{ student.name.charAt(0) }}
+    </div>
+    <div class="profile-info">
+      <h1>{{ student.name }}</h1>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>Student ID:</strong> #{{ student.id }}</p>
+    </div>
+    <div class="profile-stats">
+      <div class="stat-box">
+        <span class="stat-num">{{ student.gpa }}</span>
+        <span class="stat-label">GPA</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">{{ (enrolledCourses$ | async)?.length || 0 }}</span>
+        <span class="stat-label">Courses</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>My Enrolled Courses</h2>
+  <div *ngIf="enrolledCourses$ | async as courses">
+    <div class="grid" *ngIf="courses.length > 0; else noEnrolled">
+      <div *ngFor="let course of courses">
+        <app-course-card [course]="course"></app-course-card>
+      </div>
+    </div>
+    <ng-template #noEnrolled>
+      <div class="card no-courses-card" style="text-align: center; padding: 40px;">
+        <p>You are not currently enrolled in any courses.</p>
+        <button class="btn" routerLink="/courses" style="margin-top: 15px;">Browse Courses</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

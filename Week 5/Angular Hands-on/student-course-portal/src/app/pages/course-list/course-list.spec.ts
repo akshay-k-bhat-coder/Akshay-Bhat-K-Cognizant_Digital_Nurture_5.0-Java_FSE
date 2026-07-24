@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { CourseList } from './course-list';
 
@@ -19,6 +20,8 @@ describe('CourseList', () => {
     await TestBed.configureTestingModule({
       imports: [CourseList],
       providers: [
+        provideHttpClient(),
+        provideRouter([]),
         provideMockStore({
           initialState: {
             course: {
@@ -31,7 +34,6 @@ describe('CourseList', () => {
             }
           }
         }),
-        provideHttpClient(),
       ],
     })
     .compileComponents();

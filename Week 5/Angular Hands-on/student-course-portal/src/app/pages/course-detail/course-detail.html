@@ -1,16 +1,46 @@
-@if (course; as c) {
-  <h2>{{ c.name }}</h2>
+<div class="container" style="max-width: 600px;">
+  @if (course; as c) {
+    <div class="card course-detail-container" style="position: relative; overflow: hidden; border-left: 6px solid var(--primary);">
+      <h2 style="font-size: 2.2rem; margin-bottom: 20px; border-left: none; padding-left: 0;">{{ c.name }}</h2>
 
-  <p><strong>Course Code:</strong> {{ c.code }}</p>
+      <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+        <p style="font-size: 1rem;"><strong style="color: var(--text-main);">Course Code:</strong> {{ c.code }}</p>
+        <p style="font-size: 1rem;"><strong style="color: var(--text-main);">Credits:</strong> {{ c.credits }}</p>
+        <p style="font-size: 1rem;">
+          <strong style="color: var(--text-main);">Grade Status:</strong> 
+          <span class="grade-badge" [ngClass]="c.gradeStatus" style="margin: 0 0 0 10px;">{{ c.gradeStatus | uppercase }}</span>
+        </p>
+      </div>
 
-  <p><strong>Credits:</strong> {{ c.credits }}</p>
+      <!-- Enrolled Students list -->
+      <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color); margin-bottom: 25px;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Enrolled Students</h3>
+        <div *ngIf="enrolledStudents$ | async as students; else loadingStudents">
+          <ul *ngIf="students.length > 0; else noStudents" style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 10px;">
+            <li *ngFor="let s of students" style="display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+              <span style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></span>
+              <div>
+                <strong style="display: block; font-size: 0.9rem; color: var(--text-main);">{{ s.name }}</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">{{ s.email }}</span>
+              </div>
+            </li>
+          </ul>
+          <ng-template #noStudents>
+            <p style="font-size: 0.9rem; color: var(--text-muted); font-style: italic;">No students enrolled yet.</p>
+          </ng-template>
+        </div>
+        <ng-template #loadingStudents>
+          <p style="font-size: 0.9rem; color: var(--text-muted); font-style: italic;">Loading enrolled student registry...</p>
+        </ng-template>
+      </div>
 
-  <p><strong>Grade Status:</strong> {{ c.gradeStatus }}</p>
-
-  <p>
-    <strong>Enrollment:</strong>
-    {{ c.enrolled ? 'Enrolled' : 'Not Enrolled' }}
-  </p>
-} @else {
-  <h2>Course Not Found</h2>
-}
+      <button class="btn" routerLink="/courses" style="width: 100%;">Back to Courses</button>
+    </div>
+  } @else {
+    <div class="card" style="text-align: center; padding: 40px;">
+      <h2>Course Not Found</h2>
+      <p style="margin-bottom: 20px;">The course details could not be loaded.</p>
+      <button class="btn" routerLink="/courses">Back to Courses</button>
+    </div>
+  }
+</div>

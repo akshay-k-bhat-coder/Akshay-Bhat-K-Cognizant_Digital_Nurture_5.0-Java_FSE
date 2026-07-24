@@ -1,15 +1,19 @@
 <nav>
   <h2>Student Course Portal</h2>
 
-  <a routerLink="/">Home</a>
+  <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
 
-  <a routerLink="/courses">Courses</a>
+  <a routerLink="/courses" routerLinkActive="active-link">Courses</a>
 
-  <a routerLink="/profile">Profile</a>
+  <a routerLink="/profile" routerLinkActive="active-link">Profile</a>
 
-  <a routerLink="/enroll">Enroll</a>
+  <a routerLink="/enroll" routerLinkActive="active-link">Enroll</a>
 
-  <a routerLink="/reactive-enroll">Reactive Form</a>
+  <a routerLink="/enroll/reactive" routerLinkActive="active-link">Reactive Form</a>
 
-  <a routerLink="/add-course">Add Course</a>
+  <a routerLink="/add-course" routerLinkActive="active-link">Add Course</a>
+
+  <button (click)="toggleTheme()" style="padding: 8px 14px; font-size: 0.8rem; background: transparent; border: 1px solid var(--border-color); color: var(--text-main); margin-left: 10px;">
+    {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+  </button>
 </nav>

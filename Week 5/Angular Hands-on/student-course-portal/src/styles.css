@@ -1,1 +1,298 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #0b0f19;
+  --panel-bg: #111827;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.15);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.15);
+  --danger: #f43f5e;
+  --danger-glow: rgba(244, 63, 94, 0.15);
+  --warning: #f59e0b;
+  --warning-glow: rgba(245, 158, 11, 0.15);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Variables */
+body.light-theme {
+  --bg-color: #f8fafc;
+  --panel-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-glow: rgba(79, 70, 229, 0.1);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.1);
+  --danger: #e11d48;
+  --danger-glow: rgba(225, 29, 72, 0.1);
+  --warning: #d97706;
+  --warning-glow: rgba(217, 119, 6, 0.1);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+body.light-theme ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Container Layout */
+.container, main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Typography styling */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4 {
+  color: #0f172a;
+}
+
+h2 {
+  font-size: 1.8rem;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+
+p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Cards & Glassmorphic Elements */
+.card, .stats .card, app-course-card > div, .course-detail-container {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+body.light-theme .card, 
+body.light-theme .stats .card, 
+body.light-theme app-course-card > div, 
+body.light-theme .course-detail-container {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.card:hover, app-course-card > div:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+}
+
+body.light-theme .card:hover, 
+body.light-theme app-course-card > div:hover {
+  border-color: rgba(79, 70, 229, 0.3);
+  box-shadow: 0 12px 40px rgba(79, 70, 229, 0.08);
+}
+
+/* Buttons */
+button, .btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+  outline: none;
+}
+
+button:hover, .btn:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+button:disabled, .btn:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+body.light-theme button:disabled, 
+body.light-theme .btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+}
+
+button.danger {
+  background: var(--danger);
+}
+button.danger:hover {
+  background: #e11d48;
+}
+
+/* Form Fields */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="number"],
+body.light-theme select,
+body.light-theme textarea {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+body.light-theme input[type="text"]:focus,
+body.light-theme input[type="email"]:focus,
+body.light-theme input[type="number"]:focus,
+body.light-theme select:focus,
+body.light-theme textarea:focus {
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: var(--danger) !important;
+}
+
+input.ng-valid.ng-touched,
+select.ng-valid.ng-touched {
+  border-color: var(--success) !important;
+}
+
+small {
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Light Theme Navigation overrides */
+body.light-theme nav {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme nav h2 {
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light-theme nav a {
+  color: #475569;
+}
+body.light-theme nav a:hover {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.03);
+}
+body.light-theme nav .active-link {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+/* Loading Bar Animation */
+@keyframes loadingBar {
+  0% { left: -100%; width: 100%; }
+  50% { width: 30%; }
+  100% { left: 100%; width: 100%; }
+}

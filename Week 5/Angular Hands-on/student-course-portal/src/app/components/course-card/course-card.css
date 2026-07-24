@@ -1,27 +1,114 @@
-.course-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+:host {
+  display: block;
 }
 
-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  cursor: pointer;
+.card-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 200px;
+  justify-content: space-between;
 }
 
+/* Card enrolled status styling */
+:host-context(.card--enrolled) > div,
 .card--enrolled {
-  background-color: #e8f5e9;
-  border: 2px solid green;
+  background: rgba(16, 185, 129, 0.08) !important;
+  border-color: var(--success) !important;
+  box-shadow: 0 4px 20px var(--success-glow) !important;
 }
 
+:host-context(.card--enrolled) > div:hover,
+.card--enrolled:hover {
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Card full status styling (4+ credits) */
 .card--full {
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 20px var(--warning-glow);
 }
 
 .expanded {
-  padding: 15px;
-  min-height: 220px;
+  min-height: 260px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+strong {
+  color: var(--text-main);
+}
+
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.grade-badge.passed {
+  background: var(--success-glow);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.grade-badge.failed {
+  background: var(--danger-glow);
+  color: var(--danger);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+.grade-badge.pending {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.details-panel {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

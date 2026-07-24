@@ -1,14 +1,39 @@
-<h2>Available Courses</h2>
+<div class="container">
+  <h2>Available Courses</h2>
 
-<p *ngIf="loading$ | async">Loading courses...</p>
+  <div class="card" style="margin-bottom: 25px; padding: 20px;">
+    <div class="form-group" style="margin-bottom: 0;">
+      <label>Search Course Catalog</label>
+      <input
+        type="text"
+        placeholder="Search by course name or code..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+        style="max-width: 500px;"
+      />
+    </div>
+  </div>
 
-<div *ngIf="(loading$ | async) === false">
-  <div *ngFor="let course of courses$ | async; trackBy: trackByCourseId">
-    <app-course-card
-      [course]="course"
-      (viewCourse)="viewCourse($event)"
-      (deleteCourseEvent)="deleteCourse($event)"
-    >
-    </app-course-card>
+  <p *ngIf="loading$ | async" style="text-align: center; color: var(--primary); padding: 40px; font-weight: 500;">
+    Loading courses...
+  </p>
+
+  <div *ngIf="(loading$ | async) === false && (filteredCourses$ | async) as courses">
+    <div class="grid" *ngIf="courses.length > 0; else noCourses">
+      <div *ngFor="let course of courses; trackBy: trackByCourseId">
+        <app-course-card
+          [course]="course"
+          (viewCourse)="viewCourse($event)"
+          (deleteCourseEvent)="deleteCourse($event)"
+        >
+        </app-course-card>
+      </div>
+    </div>
+    
+    <ng-template #noCourses>
+      <div class="card" style="text-align: center; padding: 40px;">
+        <p>No courses available matching your search criteria.</p>
+      </div>
+    </ng-template>
   </div>
 </div>

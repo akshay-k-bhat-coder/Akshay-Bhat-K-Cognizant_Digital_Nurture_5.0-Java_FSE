@@ -6,6 +6,9 @@ import {
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggingInterceptor } from './interceptors/logging-interceptor';
+import { authInterceptor } from './interceptors/auth.interceptor';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { errorInterceptor } from './interceptors/error.interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideState } from '@ngrx/store';
@@ -24,7 +27,12 @@ export const appConfig: ApplicationConfig = {
     provideState('enrollment', enrollmentReducer),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([loggingInterceptor])),
+    provideHttpClient(withInterceptors([
+      loggingInterceptor,
+      authInterceptor,
+      loadingInterceptor,
+      errorInterceptor
+    ])),
     provideStoreDevtools({
       maxAge: 25,
     }),

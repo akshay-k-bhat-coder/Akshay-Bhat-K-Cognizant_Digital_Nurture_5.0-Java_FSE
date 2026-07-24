@@ -23,7 +23,11 @@ export class EditCourse implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const rawId = this.route.snapshot.paramMap.get('id');
+    if (!rawId) return;
+
+    const parsedId = Number(rawId);
+    const id = isNaN(parsedId) ? rawId : parsedId;
 
     this.courseService.getCourseById(id).subscribe({
       next: (data) => (this.course = data),

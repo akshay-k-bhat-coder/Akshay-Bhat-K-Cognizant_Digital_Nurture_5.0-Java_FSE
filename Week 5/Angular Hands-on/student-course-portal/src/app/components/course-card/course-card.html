@@ -1,41 +1,46 @@
 <div
-  appHighlight="lightblue"
+  appHighlight="rgba(99, 102, 241, 0.08)"
   [class.card--enrolled]="(enrolledIds$ | async)?.includes(course.id)"
   [ngClass]="cardClasses"
   [ngStyle]="{
     'border-left':
       course.gradeStatus === 'passed'
-        ? '6px solid green'
+        ? '6px solid var(--success)'
         : course.gradeStatus === 'failed'
-          ? '6px solid red'
-          : '6px solid gray',
+          ? '6px solid var(--danger)'
+          : '6px solid var(--text-muted)',
   }"
 >
-  <h3>{{ course.name }}</h3>
+  <div class="card-container">
+    <div>
+      <h3>{{ course.name }}</h3>
+      <p><strong>Credits:</strong> {{ course.credits | creditLabel }}</p>
+      <p><strong>Code:</strong> {{ course.code }}</p>
 
-  <p><strong>Credits:</strong> {{ course.credits | creditLabel }}</p>
+      <div [ngSwitch]="course.gradeStatus">
+        <span *ngSwitchCase="'passed'" class="grade-badge passed">Passed</span>
+        <span *ngSwitchCase="'failed'" class="grade-badge failed">Failed</span>
+        <span *ngSwitchDefault class="grade-badge pending">Pending</span>
+      </div>
+    </div>
 
-  <p><strong>Credits:</strong> {{ course.credits }}</p>
+    <div>
+      <div class="card-actions">
+        <button class="btn-secondary" (click)="viewDetails()">View</button>
+        <button class="danger" (click)="deleteCourse()">Delete</button>
+        <button class="btn-secondary" (click)="toggleDetails()">
+          {{ isExpanded ? 'Less' : 'Details' }}
+        </button>
+        <button (click)="onEnroll()">
+          {{ (enrolledIds$ | async)?.includes(course.id) ? 'Unenroll' : 'Enroll' }}
+        </button>
+      </div>
 
-  <div [ngSwitch]="course.gradeStatus">
-    <span *ngSwitchCase="'passed'">🟢 Passed</span>
-
-    <span *ngSwitchCase="'failed'">🔴 Failed</span>
-
-    <span *ngSwitchDefault>⚪ Pending</span>
-  </div>
-
-  <button (click)="viewDetails()">View Course</button>
-  <button (click)="deleteCourse()">Delete</button>
-  <button (click)="toggleDetails()">
-    {{ isExpanded ? 'Hide Details' : 'Show Details' }}
-  </button>
-  <button (click)="onEnroll()">
-    {{ (enrolledIds$ | async)?.includes(course.id) ? 'Unenroll' : 'Enroll' }}
-  </button>
-  <div *ngIf="isExpanded">
-    <p><strong>Course Code:</strong> {{ course.code }}</p>
-    <p><strong>Credits:</strong> {{ course.credits }}</p>
-    <p><strong>Status:</strong> {{ course.gradeStatus }}</p>
+      <div *ngIf="isExpanded" class="details-panel">
+        <p><strong>Course Code:</strong> {{ course.code }}</p>
+        <p><strong>Credits:</strong> {{ course.credits }}</p>
+        <p><strong>Grade Status:</strong> {{ course.gradeStatus | uppercase }}</p>
+      </div>
+    </div>
   </div>
 </div>

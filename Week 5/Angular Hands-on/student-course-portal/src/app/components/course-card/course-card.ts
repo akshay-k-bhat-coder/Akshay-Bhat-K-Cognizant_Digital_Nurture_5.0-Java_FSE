@@ -5,6 +5,7 @@ import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, take } from 'rxjs';
+import { Router } from '@angular/router';
 import { selectEnrolledIds } from '../../store/enrollment/enrollment.selectors';
 import { enrollInCourse, unenrollFromCourse } from '../../store/enrollment/enrollment.actions';
 
@@ -21,7 +22,7 @@ export class CourseCard implements OnChanges {
 
   enrolledIds$: Observable<number[]>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.enrolledIds$ = this.store.select(selectEnrolledIds);
   }
 
@@ -58,10 +59,9 @@ export class CourseCard implements OnChanges {
   }
 
   viewDetails() {
-    alert('CourseCard clicked');
     console.log('Course ID:', this.course.id);
-
     this.viewCourse.emit(this.course.id);
+    this.router.navigate(['/courses', this.course.id]);
   }
 
   toggleDetails() {
