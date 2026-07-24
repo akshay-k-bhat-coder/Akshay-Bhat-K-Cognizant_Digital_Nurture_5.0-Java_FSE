@@ -31,6 +31,8 @@ export class CourseCard implements OnChanges {
 
   @Output()
   enrollCourse = new EventEmitter<any>();
+  @Output()
+  enrollRequested = new EventEmitter<number>();
   isExpanded = false;
 
   @Output()
@@ -41,6 +43,7 @@ export class CourseCard implements OnChanges {
 
   onEnroll() {
     this.toggleEnroll();
+    this.enrollRequested.emit(this.course.id);
   }
 
   toggleEnroll() {
